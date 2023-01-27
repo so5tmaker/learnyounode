@@ -1,0 +1,6 @@
+npm install -g learnyounode
+
+» Для вывода описания задачи введите: learnyounode print                      
+» Для запуска решения в тестовом режиме введите: learnyounode run program.js                                                                  
+» Для проверки решения введите:  learnyounode verify program.js               
+» Для вызова справки введите: learnyounode help     
