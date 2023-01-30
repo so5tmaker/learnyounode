@@ -39,4 +39,16 @@
 
 const fs = require('fs');
 
-console.log(fs.readFileSync('Описание.txt').toString().split('\n').length + 1);
+const array = process.argv;
+console.log(fs.readFileSync(array[2]).toString().split('\n').length - 1);
+
+const fs = require('fs')
+
+// const contents = fs.readFileSync(process.argv[2])
+// const lines = contents.toString().split('\n').length - 1
+// console.log(lines)
+
+    // заметьте, что вы можете избежать использования .toString(), передав 'utf8'
+    // в качестве второго аргумента в readFileSync и получив затем строку!
+    //
+    // fs.readFileSync(process.argv[2], 'utf8').split('\n').length - 1
