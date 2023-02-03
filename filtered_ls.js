@@ -33,3 +33,34 @@
 
 //   Документацию для path модуля Вы сможете найти набрав в браузере:
 // file:///Users/softmaker/.nvm/versions/node/v18.12.1/lib/node_modules/learnyounode/docs-nodejs/path.html  
+
+const fs = require('fs');
+const path = require('path');
+
+const pathToFile = process.argv[2];
+const ext = '.' + process.argv[3];
+
+fs.readdir(pathToFile, (err, list) => {
+    if (err) return console.error(err);
+    for (const item of list) {
+        if (path.extname(item) === ext) {
+            console.log(item);
+        }
+    }
+})
+
+// 'use strict'
+// const fs = require('fs')
+// const path = require('path')
+
+// const folder = process.argv[2]
+// const ext = '.' + process.argv[3]
+
+// fs.readdir(folder, function (err, files) {
+//     if (err) return console.error(err)
+//     files.forEach(function (file) {
+//         if (path.extname(file) === ext) {
+//             console.log(file)
+//         }
+//     })
+// })

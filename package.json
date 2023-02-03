@@ -1,0 +1,20 @@
+{
+  "name": "learnyounode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "filtered_ls.js",
+  "scripts": {
+    "start": "node filtered_ls.js / txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/so5tmaker/learnyounode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/so5tmaker/learnyounode/issues"
+  },
+  "homepage": "https://github.com/so5tmaker/learnyounode#readme"
+}
