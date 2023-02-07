@@ -4,7 +4,7 @@
   "description": "",
   "main": "filtered_ls.js",
   "scripts": {
-    "start": "node filtered_ls.js / txt"
+    "start": "node make-it-modular.js /Users/softmaker/Documents/WebDeveloping/Courses/nodeschool/node.js/learnyounode/ txt"
   },
   "repository": {
     "type": "git",
