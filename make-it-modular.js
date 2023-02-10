@@ -1,4 +1,4 @@
-// ## MAKE IT MODULAR(Задача 6 из 13)  
+// ## MAKE IT MODULAR(Задача 6 из 13)
 
 //   Эта задача очень похожа на предыдущую, с той лишь разницей, что она  
 //   знакомит нас с концепцией модулей.Вы должны создать два файла, чтобы  
@@ -101,8 +101,8 @@ mymodule(pathToFile, ext, (err, list) => {
     }
 });
 
-_ / Users / softmaker /.nvm / versions / node / v18.12.1 / lib / node_modules / learnyounod
-e / exercises / make_it_modular / solution / solution.js_ :
+// _ / Users / softmaker /.nvm / versions / node / v18.12.1 / lib / node_modules / learnyounod
+// e / exercises / make_it_modular / solution / solution.js_ :
 
 
 // 'use strict'
