@@ -31,7 +31,7 @@
 // 'Buffer'.  
 
 //   Документацию для fs модуля Вы сможете найти набрав в браузере:
-// file:///Users/softmaker/.nvm/versions/node/v18.12.1/lib/node_modules/learnyounode/docs-nodejs/fs.html  
+//   file:///Users/softmaker/.nvm/versions/node/v18.12.1/lib/node_modules/learnyounode/docs-nodejs/fs.html  
 
 const fs = require('fs');
 
