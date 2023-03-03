@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/so5tmaker/learnyounode/issues"
   },
-  "homepage": "https://github.com/so5tmaker/learnyounode#readme"
+  "homepage": "https://github.com/so5tmaker/learnyounode#readme",
+  "dependencies": {
+    "through2-map": "^3.0.0"
+  }
 }
