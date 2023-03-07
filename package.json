@@ -4,7 +4,7 @@
   "description": "",
   "main": "filtered_ls.js",
   "scripts": {
-    "start": "node http.js http://nodejs.org/dist/index.json"
+    "start": "node 12.http-json-api-server.js"
   },
   "repository": {
     "type": "git",
