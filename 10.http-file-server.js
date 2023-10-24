@@ -51,21 +51,21 @@ const server = http.createServer((req, res) => {
     fs.createReadStream(file).pipe(res);
 })
 
-server.listen(Number(port),()=>console.log('Server listening on port: ' + port));  
+server.listen(Number(port), () => console.log('Server listening on port: ' + port));
 
 //   Documentation on the http module can be found by pointing your browser
 //   here:
 //   file:///Users/softmaker/.nvm/versions/node/v18.12.1/lib/node_modules/learnyounode/docs-nodejs/http.html  
-   
-//   The fs core module also has some streaming APIs for files.You will need  
+
+//   The fs core module also has some streaming APIs for files. You will need  
 //   to use the fs.createReadStream() method to create a stream representing  
 //   the file you are given as a command - line argument.The method returns a  
 //   stream object which you can use src.pipe(dst) to pipe the data from the  
 //   src stream to the dst stream.In this way you can connect a filesystem  
 //   stream with an HTTP response stream.  
-   
+
 //   Check to see if your program is correct by running this command:  
-   
+
 //      $ learnyounode verify http-file-server.js  
 
 //  # PASS Your solution to HTTP FILE SERVER passed!
@@ -87,3 +87,70 @@ server.listen(Number(port),()=>console.log('Server listening on port: ' + port))
 // server.listen(Number(process.argv[2]))
 
 // ────────────────────────────────────────────────────────────────────────────
+
+const express = require('express');
+const multer = require('multer');
+const zlib = require('zlib');
+const fsp = require('fs').promises;
+const path = require('path');
+
+const app = express();
+
+// Set the destination folder for uploaded files
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function (req, file, cb) {
+        const originalName = file.originalname;
+        const extension = path.extname(originalName);
+        const fileName = path.basename(originalName, extension);
+        cb(null, `${fileName}.gz`);
+    }
+});
+
+// Create a multer instance with the configured storage options
+const upload = multer({ storage });
+
+// Define a route for handling the POST request
+app.post('/upload', upload.single('pdfFile'), async (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    // Read the uploaded .gz file
+    const filePath = path.join(__dirname, 'uploads', req.file.filename);
+
+    try {
+        // Create a read stream to read the contents of the uploaded .gz file
+        const readStream = await fsp.createReadStream(filePath);
+
+        // Create a write stream for writing the decompressed data
+        const outputFilePath = path.join(__dirname, 'uploads', 'decompressed.pdf');
+        const writeStream = await fsp.createWriteStream(outputFilePath);
+
+        // Pipe the read stream through the gunzip transform and write to the output file
+        await new Promise((resolve, reject) => {
+            readStream
+                .pipe(zlib.createGunzip())
+                .pipe(writeStream)
+                .on('finish', resolve)
+                .on('error', reject);
+        });
+
+        console.log('File decompressed successfully');
+
+        // Delete the uploaded .gz file
+        await fsp.unlink(filePath);
+
+        res.send('File uploaded and decompressed successfully');
+    } catch (error) {
+        console.error('Error during file decompression:', error);
+        res.status(500).json({ error: 'File decompression failed' });
+    }
+});
+
+// Start the server
+app.listen(3000, () => {
+    console.log('Server is listening on port 3000');
+});

@@ -41,8 +41,14 @@ const fs = require('fs');
 
 const array = process.argv;
 console.log(fs.readFileSync(array[2]).toString().split('\n').length - 1);
+// console.log(array);
 
 // ПОЧЕМУ ТРЕТИЙ АРГУМЕНТ? ПОТОМУ ЧТО ДВА ПЕРВЫХ ЭТО ВСЕГА "NODE" И ПУТЬ К ЭТОМУ ФАЙЛУ read-file.js
+
+// [
+//     '/Users/softmaker/.nvm/versions/node/v18.12.1/bin/node',
+//     '/Users/softmaker/Documents/WebDeveloping/Courses/nodeschool/node.js/learnyounode/2.my-first-io.js'
+// ]
 
 // const contents = fs.readFileSync(process.argv[2])
 // const lines = contents.toString().split('\n').length - 1
